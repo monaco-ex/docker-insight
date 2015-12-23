@@ -1,0 +1,11 @@
+{
+  "datadir": "/home/npmuser/.bitcore/data",
+  "network": "livenet",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "db",
+    "address",
+    "web"
+  ]
+}
