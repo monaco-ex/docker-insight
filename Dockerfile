@@ -22,13 +22,18 @@ VOLUME /datadir
 USER root
 RUN sudo npm -g install npm@latest
 RUN useradd -ms /bin/bash npmuser
+
 USER npmuser
 WORKDIR /home/npmuser
 RUN npm install bitcore-node
 RUN node_modules/bitcore-node/bin/bitcore-node create mynode
-WORKDIR /home/npmuser/mynode
+
+USER root
 ADD bitcore-node.json /home/npmuser/mynode/bitcore-node.json
 RUN chown npmuser /home/npmuser/mynode/bitcore-node.json
+
+USER npmuser
+WORKDIR /home/npmuser/mynode
 RUN node_modules/bitcore-node/bin/bitcore-node install insight-api
 RUN node_modules/bitcore-node/bin/bitcore-node install insight-ui
 
