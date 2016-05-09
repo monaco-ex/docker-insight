@@ -20,7 +20,7 @@ RUN mkdir /datadir
 VOLUME /datadir
 
 USER root
-RUN sudo npm -g install npm@latest
+RUN sudo npm -g install npm@3.5.3
 RUN useradd -ms /bin/bash npmuser
 
 USER npmuser
