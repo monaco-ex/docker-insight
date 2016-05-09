@@ -25,7 +25,7 @@ RUN useradd -ms /bin/bash npmuser
 
 USER npmuser
 WORKDIR /home/npmuser
-RUN npm install bitcore-node
+RUN npm install bitcore-node@2.1.1
 RUN node_modules/bitcore-node/bin/bitcore-node create mynode
 
 USER root
