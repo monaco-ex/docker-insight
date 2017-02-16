@@ -1,10 +1,12 @@
-FROM monami0ya/docker-baseimage:14.04
+FROM quantumobject/docker-baseimage:16.04
 MAINTAINER <info@monaco-ex.org>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get -y update
+RUN apt-get -y upgrade
 RUN apt-add-repository ppa:bitcoin/bitcoin
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 RUN apt-get -y install bitcoind nodejs git python build-essential
 RUN apt-get -y dist-upgrade
 
