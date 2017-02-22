@@ -39,7 +39,7 @@ rpcallowip=127.0.0.1
 rpcallowip=172.17.0.0/16
 #rpcallowip=10.1.1.34
 #rpcallowip=192.168.1.0/255.255.255.0
-#rpcallowip=172.16.0.0/24
+rpcallowip=172.16.0.0/24
 
 # Listen for RPC connections on this TCP port:
 rpcport=${BITCOIND_PORT}
