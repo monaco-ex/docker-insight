@@ -23,7 +23,7 @@ chown npmuser:npmuser /home/npmuser/.bitcore/package.json
 
 cd /home/npmuser/.bitcore
 /sbin/setuser npmuser bitcore-node install insight-api 2>&1
-/sbin/setuser npmuser bitcore-node install insight-ui 2>&1
+#/sbin/setuser npmuser bitcore-node install insight-ui 2>&1
 
 ###################
 
