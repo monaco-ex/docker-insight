@@ -44,6 +44,8 @@ rpcallowip=172.16.0.0/24
 # Listen for RPC connections on this TCP port:
 rpcport=${BITCOIND_PORT}
 
+rpcworkqueue=128
+
 whitelist=127.0.0.1
 txindex=1
 addressindex=1
