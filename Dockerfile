@@ -25,7 +25,7 @@ RUN useradd -ms /bin/bash npmuser
 RUN mkdir -p /home/npmuser/.bitcore && chown npmuser:npmuser /home/npmuser/.bitcore
 VOLUME /home/npmuser/.bitcore
 
-RUN npm install -g bitcore-node@latest bitcore-lib insight-api insight-ui
+RUN npm install -g bitcore-node@latest bitcore-lib@0.13.19 insight-api insight-ui
 
 USER npmuser
 WORKDIR /home/npmuser
