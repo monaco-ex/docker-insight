@@ -1,0 +1,58 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    privileged: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./docker-compose.d/certs:/etc/nginx/certs:ro
+      - ./docker-compose.d/htpasswd:/etc/nginx/htpasswd
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+
+  letsencrypt-nginx:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx
+    privileged: true
+    volumes:
+      - ./docker-compose.d/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx-proxy
+    restart: always
+
+  insight:
+    image: monacoex/insight:bitcoin
+    environment:
+      VIRTUAL_HOST: btc.insight.monaco-ex.org
+      VIRTUAL_PORT: 3001
+      LETSENCRYPT_HOST: btc.insight.monaco-ex.org
+      LETSENCRYPT_EMAIL: admin@monaco-ex.org
+      LETSENCRYPT_TEST: "false"
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - insight_btc_data:/home/node/insight/data
+
+  insight-mona:
+    image: monacoex/insight:monacoin
+    environment:
+      VIRTUAL_HOST: mona.insight.monaco-ex.org
+      VIRTUAL_PORT: 3001
+      LETSENCRYPT_HOST: mona.insight.monaco-ex.org
+      LETSENCRYPT_EMAIL: admin@monaco-ex.org
+      LETSENCRYPT_TEST: "false"
+    restart: always
+    ports:
+      - "3002:3001"
+    volumes:
+      - insight_mona_data:/home/node/insight/data
+volumes:
+  insight_btc_data:
+  insight_mona_data:
