@@ -1,7 +1,7 @@
 FROM node:7
 
 # for force automated-build
-RUN echo 2
+RUN echo 3
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y libzmq3-dev
 RUN npm install --unsafe-perm -g monacore-node
