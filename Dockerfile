@@ -1,4 +1,4 @@
-FROM node:7
+FROM node:6.9.4
 
 # for force automated-build
 RUN echo 3
