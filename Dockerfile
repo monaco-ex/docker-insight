@@ -11,6 +11,7 @@ RUN monacore-node create insight
 WORKDIR /home/node/insight
 RUN monacore-node install insight-api-monacoin
 RUN monacore-node install insight-ui-monacoin
+COPY bitcore-node.json .
 
 VOLUME /home/node/insight/data
 CMD /home/node/insight/node_modules/monacore-node/bin/monacore-node start
